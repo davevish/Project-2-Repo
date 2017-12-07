@@ -123,7 +123,7 @@ module.exports = function(app) {
         //     res.json(newBody);
         // }); // request close
 
-            var requestMe = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" + key + "&city=atlanta&classificationName=";
+            var requestMe = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" + key.ticketmaster + "&city=atlanta&classificationName=";
             var allReq=[];
 
             for (var i = 0; i < makeArray.length; i++) {
