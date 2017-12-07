@@ -2,11 +2,10 @@
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
 var request = require('request');
-
+var key = require("../config/config.js");
 // Dependencies
 // =============================================================
 
-// Requiring our Burger model
 var Dropbox = require("dropbox");
 var db = require("../models");
 var validator = require("validator");
@@ -111,11 +110,11 @@ module.exports = function(app) {
                 email: req.params.survey
             }
         }).then(function (answer) {
-            console.log("ANWERS FIRST: " + answer.survey);
+            // console.log("ANSWERS FIRST: " + answer.survey);
             //  convert string back to array
             thatone = answer.survey;
             makeArray = thatone.split(",");
-            console.log("Array???", makeArray);
+            // console.log("Array???", makeArray);
 
         // request('https://app.ticketmaster.com/discovery/v2/events.json?apikey=WfeuZCOCrGxOcUmDfuB6S0QApHBNvGKJ&city=atlanta&classificationName=' + thatone, function (error, response, body) {
         //     console.log('error:', error); // Print the error if one occurred
@@ -124,13 +123,13 @@ module.exports = function(app) {
         //     res.json(newBody);
         // }); // request close
 
-            var requestMe = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=WfeuZCOCrGxOcUmDfuB6S0QApHBNvGKJ&city=atlanta&classificationName=";
+            var requestMe = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" + key + "&city=atlanta&classificationName=";
             var allReq=[];
 
             for (var i = 0; i < makeArray.length; i++) {
                 allReq.push(requestMe + makeArray[i]);
             }
-            console.log(allReq);
+            // console.log(allReq);
 
             function httpGet(url, callback) {
                 var options = {
